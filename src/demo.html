@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>机器人对话实现</title>
+    <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
+    <link rel="stylesheet" href="chatbox.css">
+
+
+</head>
+<body>
+<script src="autoload.js"></script><!--2D人物加载-->
+<script type="text/javascript" color="0,0,0" opacity='0.7' zIndex="-2" count="99"
+        src="js/line.js"></script><!--网页特效-->
+
+
+
+<div id="chatbox">
+    <div class="container">
+
+        <div class="top">
+                    <span>To:
+                        <span class="name">Britu小精灵</span>
+                    </span>
+            <div class="x">
+                <a href="javascript:;" class="fa fa-lg fa-times" id="x"></a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="bubble_you">
+                <span class="img_1"></span>
+                <span class="bubble_1">
+                    <span></span>
+                    Hello,我是Britu小精灵。你有什么不懂的问题吗？我可是全知全能哟！
+                </span>
+            </div>
+            <div class="bubble_me">
+                <span class="img_2"></span>
+                <span class="bubble_2">
+                    <span></span>
+                    好的呢，我可是有一大堆问题想问的呢。
+                </span>
+            </div>
+        </div>
+        <div class="list">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="write">
+            <!--                    <a href="javascript:;" class="write-link attach"></a>-->
+            <a href="javascript:;" class="recorder fa fa-lg fa-microphone"></a>
+            <input id="text" type="text" placeholder='尽情畅聊吧' />
+            <!--                    <a href="javascript:;" class="write-link smiley"></a>-->
+            <a href="javascript:;" class="send fa fa-lg fa-paper-plane" id="send"></a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    window.onload=function(){
+        var send =document.getElementById('send');
+        var text =document.getElementById('text');
+        var x = document.getElementById('x');
+        x.onclick=function(){
+            document.getElementById("chatbox").style.bottom = "-1000px";
+        };
+        send.onclick=function(){
+            if(text.value===''){
+                alert('请输入内容');
+            } else{
+                var div = document.createElement('div');//createElement() 方法通过指定名称创建一个元素
+                var span_1 = document.createElement('span');
+                var span_2 = document.createElement('span');
+                var txt = document.createTextNode(text.value);
+                var content = document.getElementsByClassName('content')[0];
+                span_1.className='bubble_2';
+                span_2.className='img_2';
+                div.className='bubble_me';
+                span_1.appendChild(txt);
+                div.appendChild(span_2);
+                div.appendChild(span_1);//在最后节点添加子节点
+                content.insertBefore(div,content.lastChild);
+                // imgs.src='img/2.jpg';
+
+                var div = document.createElement('div');
+                var span_1 = document.createElement('span');
+                var span_2 = document.createElement('span');
+                // var img = document.createElement('img');
+                var txt = document.createTextNode(text.value);
+                var content = document.getElementsByClassName('content')[0];
+
+                span_1.appendChild(txt);
+                div.appendChild(span_2);
+                div.appendChild(span_1);
+                // // div.appendChild(imgs);
+                // nDiv.style.display='block';
+                span_1.className='bubble_1';
+                span_2.className='img_1';
+                div.className='bubble_you';
+                content.insertBefore(div,content.lastChild);
+
+            }
+            text.value='';
+            content.scrollTop = content.scrollHeight;//自动跟进最新消息
+        }
+    }
+
+</script>
+
+</body>
+</html>
+
+
